@@ -27,7 +27,7 @@ class Bootstrap
     {
         $providers = require_once $this->app_path . '/config/providers.php';
         foreach ($providers as $provider) {
-            new($provider)->register($this->di);
+            (new $provider)->register($this->di);
         }
     }
 }
