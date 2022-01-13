@@ -19,7 +19,7 @@ class Bootstrap
     public function run() : void
     {
         $this->initializationProviders();
-        $this->di->getShared('dispatcher')->setDefaultNamespace('ding/app');
+        $this->di->getShared('dispatcher')->setDefaultNamespace('ding\controller');
         (new Application($this->di))->handle($_SERVER['REQUEST_URI'])->send();
     }
 

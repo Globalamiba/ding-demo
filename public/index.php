@@ -5,9 +5,10 @@ use Phalcon\Exception;
 use ding\Bootstrap;
 
 define('APP_PATH', realpath('..'));
-require_once APP_PATH . "/vendor/autoload.php";
 
 try {
+    require_once APP_PATH . "/vendor/autoload.php";
+
     $boot = new Bootstrap(APP_PATH);
     $boot->run();
 }catch (Exception $e) {
