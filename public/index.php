@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use Phalcon\Exception;
-use ding\Bootstrap;
+use vagrant\ding\Bootstrap;
 
 define('APP_PATH', realpath('..'));
 
