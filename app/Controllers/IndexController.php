@@ -5,8 +5,8 @@ namespace Vagrant\Ding\Controllers;
 
 class IndexController extends BaseController
 {
-    public function index()
+    public function indexAction()
     {
-        echo "hello";
+        return "hello";
     }
 }
