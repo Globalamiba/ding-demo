@@ -11,7 +11,7 @@ class ConfigProvider implements ServiceProviderInterface
 {
     public function register(DiInterface $di) : void
     {
-        $config = require_once $di->offsetGet('rootPath') . '/config/config.php';
+        $config = require_once $di->offsetGet('app_path') . '/config/config.php';
         $di->setShared('config', function () use ($config) {
             return new Config($config);
         });

@@ -12,7 +12,7 @@ class LoggerProvider implements ServiceProviderInterface
 {
     public function register(DiInterface $di) : void
     {
-        $rootPath = $di->offsetGet('rootPath');
+        $rootPath = $di->offsetGet('app_path');
         $di->setShared('logger', function () use($rootPath) {
             $format = new Logger\Formatter\Line();
             $format->setDateFormat('Y-m-d H:i:s');

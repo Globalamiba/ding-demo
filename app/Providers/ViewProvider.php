@@ -13,7 +13,7 @@ class ViewProvider implements ServiceProviderInterface
 
     public function register(DiInterface $di) : void
     {
-        $viewDir = $di->offsetGet('rootPath') . '/app/Views';
+        $viewDir = $di->offsetGet('app_path') . '/app/Views';
         $di->setShared($this->providerName, function() use ($viewDir) {
             $view = new View();
             $view->setViewsDir($viewDir);

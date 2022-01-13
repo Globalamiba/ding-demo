@@ -14,6 +14,7 @@ class Bootstrap
     {
         $this->app_path = $app_path;
         $this->di = new Di;
+        $this->di->offsetSet('app_path', $app_path);
     }
 
     public function run() : void
