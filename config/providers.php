@@ -1,9 +1,9 @@
 <?php
 declare(strict_types = 1);
 
-use ding\Providers\ConfigProvider;
-use ding\Providers\LoggerProvider;
-use ding\Providers\ViewProvider;
+use Vagrant\Ding\Providers\ConfigProvider;
+use Vagrant\Ding\Providers\LoggerProvider;
+use Vagrant\Ding\Providers\ViewProvider;
 
 return [
     ConfigProvider::class,

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace ding\Providers;
+namespace Vagrant\Ding\Providers;
 
 use Phalcon\Di\ServiceProviderInterface;
 use Phalcon\Di\DiInterface;

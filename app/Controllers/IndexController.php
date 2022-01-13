@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace ding\Controller;
+namespace Vagrant\Ding\Controller;
 
 class IndexController extends BaseController
 {
