@@ -1,0 +1,11 @@
+<?php
+declare(strict_types = 1);
+
+namespace ding\Controller;
+
+use Phalcon\Mvc\Controller;
+
+class BaseController extends Controller
+{
+
+}

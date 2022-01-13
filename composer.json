@@ -1,0 +1,22 @@
+{
+    "name": "vagrant/ding",
+    "description": "dingding API test project",
+    "type": "project",
+    "require": {
+        "alibabacloud/dingtalk": "^1.2"
+    },
+    "require-dev": {
+        "alibabacloud/dingtalk": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vagrant\\Ding\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jun",
+            "email": "wangjun@heymenology.com"
+        }
+    ]
+}
