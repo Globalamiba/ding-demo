@@ -11,5 +11,5 @@ try {
     $boot = new Bootstrap(APP_PATH);
     $boot->run();
 }catch (Exception $e) {
-
+    echo $e->getMessage();
 }

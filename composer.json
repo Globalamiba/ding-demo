@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vagrant\\Ding\\": "app/"
+            "Ding\\": "app/"
         }
     },
     "authors": [
