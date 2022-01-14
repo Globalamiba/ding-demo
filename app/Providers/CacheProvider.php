@@ -7,13 +7,14 @@ use Phalcon\Di\DiInterface;
 use Phalcon\Di\ServiceProviderInterface;
 use Phalcon\Cache;
 use Phalcon\Cache\AdapterFactory;
+use Phalcon\Storage\SerializerFactory;
 
 class CacheProvider implements ServiceProviderInterface
 {
     public function register(DiInterface $di) : void
     {
         $di->setShared('cache', function () {
-            $adapter = new AdapterFactory();
+            $adapter = new AdapterFactory(new SerializerFactory());
             return new Cache($adapter->newInstance("cache", ['defaultSerializer' => 'Json', 'lifetime' => 7200]));
         });
     }
