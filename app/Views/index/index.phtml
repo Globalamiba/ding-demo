@@ -24,11 +24,11 @@ info:
         onSuccess : function(res) {
             // 调用成功时回调
             console.log(res)
-            document.getElementById('re').innerHTML = res;
+            document.getElementById('re').innerHTML = res.code;
         },
         onFail : function(err) {
             // 调用失败时回调
-            document.getElementById('re').innerHTML = err;
+            document.getElementById('re').innerHTML = err.errorMessage + err.errorCode;
             console.log(err)
         }
     });
