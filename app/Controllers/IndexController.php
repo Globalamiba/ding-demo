@@ -11,6 +11,8 @@ class IndexController extends BaseController
     {
         $args = $this->config->get('ding')->toArray();
         $token = dingTalkService::main($args);
-        var_dump($token);
+        echo "<pre>";
+        print_r($token);
+        echo "</pre>";
     }
 }
