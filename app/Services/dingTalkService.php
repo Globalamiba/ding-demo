@@ -24,8 +24,8 @@ class dingTalkService
     {
         $client = self::createClient();
         $getAccessTokenRequest = new GetAccessTokenRequest([
-            "appKey" => $args['appKey'],
-            "appSecret" => $args['appSecret']
+            "appKey" => $args['AppKey'],
+            "appSecret" => $args['AppSecret']
         ]);
         try {
             return $client->getAccessToken($getAccessTokenRequest);
