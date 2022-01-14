@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Vagrant\Ding\Controllers;
 
-use Vagrant\ding\Services\dingTalkService;
+use Vagrant\Ding\Services\dingTalkService;
 
 class IndexController extends BaseController
 {
