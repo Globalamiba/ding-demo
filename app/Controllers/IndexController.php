@@ -9,6 +9,12 @@ class IndexController extends BaseController
 {
     public function indexAction()
     {
+        $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
+        $this->view->setVar('id', $this->config->get('ding.corpId'));
+    }
+
+    private function getToken()
+    {
         if ($this->cache->has('token')) {
             $token = $this->cache->get('token');
         }

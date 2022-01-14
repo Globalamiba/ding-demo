@@ -6,16 +6,16 @@ namespace Vagrant\Ding\Providers;
 use Phalcon\Di\DiInterface;
 use Phalcon\Di\ServiceProviderInterface;
 use Phalcon\Cache;
-use Phalcon\Cache\AdapterFactory;
 use Phalcon\Storage\SerializerFactory;
+use Phalcon\Cache\Adapter\Stream;
 
 class CacheProvider implements ServiceProviderInterface
 {
     public function register(DiInterface $di) : void
     {
         $di->setShared('cache', function () {
-            $adapter = new AdapterFactory(new SerializerFactory());
-            return new Cache($adapter->newInstance("apcu", ['defaultSerializer' => 'Json', 'lifetime' => 7200]));
+            $adapter = new Stream(new SerializerFactory(), ['defaultSerializer' => 'Json', 'lifetime' => 7200, 'storageDir' => $this->offsetGet('app_path') . '/storage/cache']);
+            return new Cache($adapter);
         });
     }
 }

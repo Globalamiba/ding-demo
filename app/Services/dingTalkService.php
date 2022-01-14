@@ -9,6 +9,7 @@ use Darabonba\OpenApi\Models\Config;
 use \Exception;
 use AlibabaCloud\Tea\Utils\Utils;
 use AlibabaCloud\Tea\Exception\TeaError;
+use AlibabaCloud\SDK\Dingtalk\Voauth2_1_0\Models\GetUserTokenRequest;
 
 class dingTalkService
 {
