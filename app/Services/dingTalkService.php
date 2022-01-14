@@ -41,7 +41,7 @@ class dingTalkService
         }
     }
 
-    public static function getUserId(string $appId, string $code, string $access_token) : string
+    public static function getUserId(string $code, string $access_token) : string
     {
         $url = "https://oapi.dingtalk.com/topapi/v2/user/getuserinfo?access_token=".$access_token;
         $ch = curl_init();

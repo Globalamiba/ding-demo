@@ -38,9 +38,9 @@ class IndexController extends BaseController
     {
         $code = $this->request->get('code');
         $token = $this->getToken();
-        $appId = $this->config->path('ding.AppId');
 
-        $userId = dingTalkService::getUserId($appId, $code, $token);
+        $userId = dingTalkService::getUserId($code, $token);
+        echo "getUser";
         var_dump($userId);
     }
 }
