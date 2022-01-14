@@ -9,8 +9,14 @@ class IndexController extends BaseController
 {
     public function indexAction()
     {
-        $args = $this->config->get('ding')->toArray();
-        $token = dingTalkService::main($args);
+        if ($this->cache->has('token')) {
+            $token = $this->cache->get('token');
+        }
+        else {
+            $args = $this->config->get('ding')->toArray();
+            $token = dingTalkService::main($args);
+            $this->cache->set('token', $token->body->accessToken);
+        }
         echo "<pre>";
         print_r($token);
         echo "</pre>";
