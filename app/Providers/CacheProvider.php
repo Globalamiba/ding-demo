@@ -15,7 +15,7 @@ class CacheProvider implements ServiceProviderInterface
     {
         $di->setShared('cache', function () {
             $adapter = new AdapterFactory(new SerializerFactory());
-            return new Cache($adapter->newInstance("cache", ['defaultSerializer' => 'Json', 'lifetime' => 7200]));
+            return new Cache($adapter->newInstance("apcu", ['defaultSerializer' => 'Json', 'lifetime' => 7200]));
         });
     }
 }
