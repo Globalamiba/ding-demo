@@ -24,7 +24,7 @@ info:
         onSuccess : function(res) {
             // 调用成功时回调
             document.getElementById('re').innerHTML = "success:" + res.code;
-            window.location.href = 'http://183.136.151.130:8080/index.php/index/getUser?code='.res.code;
+            window.location.replace('http://183.136.151.130:8080/index.php/index/getUser?code='.res.code)
             code = res.code;
         },
         onFail : function(err) {
