@@ -12,21 +12,26 @@
 <div id="two-way-binding">
     <textarea>{{ message }}</textarea>
 </div>
+<div id="re">
+info:
+</div>
 </body>
 </html>
 <script>
     let code = 1;
     dd.runtime.permission.requestAuthCode({
         corpId: "ding6b2f4d380e29440d35c2f4657eb6378f",
-        onSuccess: function (request) {
-            code = request.code
-            console.log(request)
+        onSuccess : function(res) {
+            // 调用成功时回调
+            console.log(res)
+            document.getElementById('re').innerHTML = res;
         },
-        onError: function (err) {
-            code = err
+        onFail : function(err) {
+            // 调用失败时回调
+            document.getElementById('re').innerHTML = err;
             console.log(err)
         }
-    })
+    });
 
     const TwoWayBinding = {
         data() {
