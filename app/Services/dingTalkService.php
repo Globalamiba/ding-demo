@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Vagrant\ding\Services;
+namespace Vagrant\Ding\Services;
 
 use AlibabaCloud\SDK\Dingtalk\Voauth2_1_0\Dingtalk;
 use AlibabaCloud\SDK\Dingtalk\Voauth2_1_0\Models\GetAccessTokenRequest;
