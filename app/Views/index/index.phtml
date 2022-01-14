@@ -9,17 +9,32 @@
     <title>Document</title>
 </head>
 <body>
-
+<div id="two-way-binding">
+    <textarea>{{ message }}</textarea>
+</div>
 </body>
 </html>
 <script>
+    let code;
     dd.runtime.permission.requestAuthCode({
         corpId: "<?php echo $id; ?>",
         onSuccess: function (request) {
+            code = request.code
             console.log(request)
         },
         onError: function (err) {
+            code = err
             console.log(err)
         }
     })
+
+    const TwoWayBinding = {
+        data() {
+            return {
+                message: code
+            }
+        }
+    }
+
+    Vue.createApp(TwoWayBinding).mount('#two-way-binding')
 </script>
