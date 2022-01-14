@@ -53,6 +53,30 @@ class dingTalkService
         curl_close($ch);
 
         return $output;
+    }
 
+    static function getDepartmentUsers(string $access_token, int $cursor = 0,int $dept_id = 1) : string
+    {
+        $params = [
+            'dept_id' => $dept_id,
+            'cursor' => $cursor,
+            'size' => 10
+        ];
+        return self::actionCurl('post', "https://oapi.dingtalk.com/topapi/v2/user/list?access_token=".$access_token, $params);
+    }
+
+    static function actionCurl(string $method, string $url, array $params = []) : string
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        if ($method == 'post') {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        }
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return $output;
     }
 }

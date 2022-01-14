@@ -24,11 +24,11 @@ info:
         corpId: "<?php echo $id; ?>",
         onSuccess : function(res) {
             // 调用成功时回调
-            let url = `http://183.136.151.130:8080/index/getUser?code=${res.code}`
+            /*let url = `http://183.136.151.130:8080/index/getUser?code=${res.code}`
             window.location.replace(url)
             document.getElementById('re').innerHTML = "success:" + url;
             document.getElementById('re').setAttribute('href', url)
-            code = res.code;
+            code = res.code;*/
         },
         onFail : function(err) {
             // 调用失败时回调

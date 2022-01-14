@@ -36,11 +36,41 @@ class IndexController extends BaseController
 
     public function getUserAction()
     {
-        $code = $this->request->get('code');
+        /*$code = $this->request->get('code');
         $token = $this->getToken();
 
         $userId = dingTalkService::getUserId($code, $token);
         var_dump($code);
-        var_dump($userId);
+        var_dump($userId);*/
+    }
+
+    public function getDepartmentUsersAction()
+    {
+        /*$token = $this->getToken();
+        $department = dingTalkService::getDepartmentUsers($token);
+        $level_one = json_decode($department, true);
+
+        foreach ($level_one['result']['list'] as $v) {
+            if (is_array($v['dept_id_list']) && count($v['dept_id_list']) > 1) {
+                foreach ($v['dept_id_list'] as $dept_id) {
+                    if (strlen((string)$dept_id) <= 1) continue;
+                    $level_two = dingTalkService::getDepartmentUsers($token, 0, $dept_id);
+                    $this->format(json_decode($level_two, true)['result']['list']);
+                    unset($level_two);
+                }
+            }
+        }*/
+    }
+
+    private function format($member)
+    {
+        echo "<pre>";
+        foreach ($member as $v) {
+            echo "name:".$v['name']."<br>";
+            echo "title:".$v['title']."<br>";
+            echo "userid:".$v['userid']."<br>";
+            echo "avatar:<img width='30px' height='30px' src='".$v['avatar']."' /><br><br>";
+        }
+        echo "</pre>";
     }
 }
