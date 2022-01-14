@@ -20,16 +20,15 @@ info:
 <script>
     let code = 1;
     dd.runtime.permission.requestAuthCode({
-        corpId: "ding6b2f4d380e29440d35c2f4657eb6378f",
+        corpId: "<?php echo $id; ?>",
         onSuccess : function(res) {
             // 调用成功时回调
-            console.log(res)
-            document.getElementById('re').innerHTML = res.code;
+            document.getElementById('re').innerHTML = "success:" + res.code;
+            code = res.code;
         },
         onFail : function(err) {
             // 调用失败时回调
-            document.getElementById('re').innerHTML = err.errorMessage + err.errorCode;
-            console.log(err)
+            document.getElementById('re').innerHTML = "error:" + err.errorMessage + err.errorCode;
         }
     });
 
