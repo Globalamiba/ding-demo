@@ -20,18 +20,27 @@ class IndexController extends BaseController
         //var_dump($this->config->path("ding.corpId"));
     }
 
-    private function getToken()
+    private function getToken() : string
     {
         if ($this->cache->has('token')) {
             $token = $this->cache->get('token');
         }
         else {
             $args = $this->config->get('ding')->toArray();
-            $token = dingTalkService::main($args);
-            $this->cache->set('token', $token->body->accessToken);
+            $accessToken = dingTalkService::main($args);
+            $this->cache->set('token', $accessToken->body->accessToken);
+            $token = $accessToken->body->accessToken;
         }
-        echo "<pre>";
-        print_r($token);
-        echo "</pre>";
+        return $token;
+    }
+
+    public function getUserAction()
+    {
+        $code = $this->request->get('code');
+        $token = $this->getToken();
+        $appId = $this->config->path('ding.AppId');
+
+        $userId = dingTalkService::getUserId($appId, $code, $token);
+        var_dump($userId);
     }
 }

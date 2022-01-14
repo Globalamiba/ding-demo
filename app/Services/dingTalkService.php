@@ -40,4 +40,19 @@ class dingTalkService
             }
         }
     }
+
+    public static function getUserId(string $appId, string $code, string $access_token) : string
+    {
+        $url = "https://oapi.dingtalk.com/topapi/v2/user/getuserinfo?access_token=".$access_token;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTREDIR, http_build_query(['code' => $code]));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return $output;
+
+    }
 }
