@@ -40,7 +40,7 @@ class IndexController extends BaseController
         $token = $this->getToken();
 
         $userId = dingTalkService::getUserId($code, $token);
-        echo "getUser";
+        var_dump($code);
         var_dump($userId);
     }
 }
