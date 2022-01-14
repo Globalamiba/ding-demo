@@ -9,7 +9,8 @@ class IndexController extends BaseController
 {
     public function indexAction()
     {
-        $ding = new dingTalkService();
-        $ding->test();
+        $args = $this->config->get('ding')->toArray();
+        $token = dingTalkService::main($args);
+        var_dump($token);
     }
 }
