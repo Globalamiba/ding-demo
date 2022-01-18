@@ -14,6 +14,7 @@ use AlibabaCloud\Tea\Exception\TeaError;
 //获取部门和用户信息  旧SDK
 use DingTalkClient;
 use DingTalkConstant;
+use OA;
 use OapiV2DepartmentListsubRequest;
 use OapiV2UserListRequest;
 
