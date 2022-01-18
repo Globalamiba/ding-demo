@@ -11,7 +11,7 @@ class IndexController extends BaseController
     {
         if (!$this->cache->has('userinfo')) {
             $params = [
-                'redirect_uri' => urlencode('http://183.136.151.130:8080/Auth'),
+                'redirect_uri' => urlencode('http://183.136.151.130:8080/Auth/index'),
                 'response_type' => 'code',
                 'client_id' => $this->config->path('ding.AppKey'),
                 'scope' => 'openid',
@@ -20,7 +20,7 @@ class IndexController extends BaseController
             ];
             $str = http_build_query($params);
             $url = 'https://login.dingtalk.com/oauth2/auth?'.$str;
-            $this->logger->info("has info redirect:".$url);
+            $this->logger->info("no info redirect:".$url);
             $this->response->redirect($url);
         }
         else {
