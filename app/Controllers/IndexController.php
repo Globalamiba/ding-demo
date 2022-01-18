@@ -11,7 +11,7 @@ class IndexController extends BaseController
     {
         if (!$this->cache->has('userinfo')) {
             $params = [
-                'redirect_url' => urldecode('http://183.136.151.130:8080/Auth'),
+                'redirect_url' => urlencode('http://183.136.151.130:8080/Auth'),
                 'response_type' => 'code',
                 'client_id' => $this->config->path('ding.AppKey'),
                 'scope' => 'openid',
@@ -43,7 +43,7 @@ class IndexController extends BaseController
     public function testAction()
     {
         $params = [
-            'redirect_url' => urldecode('http://183.136.151.130:8080/Auth'),
+            'redirect_url' => urlencode('http://183.136.151.130:8080/Auth'),
             'response_type' => 'code',
             'client_id' => $this->config->path('ding.AppKey'),
             'scope' => 'openid',
