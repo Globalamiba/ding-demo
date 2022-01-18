@@ -21,7 +21,7 @@ use OapiV2UserListRequest;
 use OapiMessageCorpconversationAsyncsendV2Request;
 use Msg;
 use Text;
-use OA;
+
 use Body;
 
 //创建代办
