@@ -15,7 +15,7 @@ class AuthController extends BaseController
         $token = dingTalkService::getUserToken($code, $this->config->path('ding.AppKey'), $this->config->path('ding.AppSecret'));
         $this->logger->info("user token:".json_encode($token));
         $this->cache->set('user_token', $token->body->accessToken);
-        $userinfo = dingTalkService::getUserInfoWithToken($token->accessToken);
+        $userinfo = dingTalkService::getUserInfoWithToken($token->body->accessToken);
         $this->logger->info("user token:".json_encode($userinfo));
         $this->cache->set('userInfo', $userinfo, 10);
         $this->response->redirect('http://183.136.151.130:8080');
