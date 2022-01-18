@@ -24,7 +24,6 @@ class IndexController extends BaseController
             $this->response->redirect($url);
         }
         else {
-            $this->logger->info("has userinfo:".$this->cache->get('userinfo'));
             $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo')));
             $this->logger->info("login user:".$this->cache->get('userinfo'));
         }
