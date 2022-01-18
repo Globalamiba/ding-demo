@@ -6,43 +6,130 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php $this->assets->outputJs(); ?>
+    <?php $this->assets->outputCss(); ?>
     <title>Document</title>
 </head>
 <body>
-<div id="two-way-binding">
-    <textarea>{{ message }}</textarea>
-</div>
-<a id="test" href="">test</a>
-<div id="re">
-info:
+<div id="counter" class="container">
+    <div class="row">
+        <div class="col-lg-2 col-12"><el-tree :props="defaultProps" :load="loadNode" @node-click="handleNodeClick" lazy /></div>
+        <div class="col-lg-10 col-12">
+            <el-table :data="userinfo" stripe border style="width: 100%">
+                <el-table-column label="avatar">
+                    <template #default="scope">
+                        <el-avatar :size="50" :src="scope.row.avatar"></el-avatar>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="name" label="name"> </el-table-column>
+                <el-table-column prop="title" label="title"> </el-table-column>
+                <el-table-column fixed="right" label="操作" width="200">
+                    <template #default="scope">
+                        <el-button @click="open(scope.row.unionid)" type="primary" size="small">创建待办</el-button>
+                        <el-button @click="send(scope.row.userid)" type="primary" size="small">发送通知</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
 <script>
-    let code = 1;
-    dd.runtime.permission.requestAuthCode({
-        corpId: "<?php echo $id; ?>",
-        onSuccess : function(res) {
-            // 调用成功时回调
-            /*let url = `http://183.136.151.130:8080/index/getUser?code=${res.code}`
-            window.location.replace(url)
-            document.getElementById('re').innerHTML = "success:" + url;
-            document.getElementById('re').setAttribute('href', url)
-            code = res.code;*/
-        },
-        onFail : function(err) {
-            // 调用失败时回调
-            document.getElementById('re').innerHTML = "error:" + err.errorMessage + err.errorCode;
-        }
-    });
 
-    const TwoWayBinding = {
+    const Counter = {
         data() {
             return {
-                message: code
+                counter: 0,
+                defaultProps: {
+                    id: 'id',
+                    label: 'name',
+                    isLeaf: 'leaf',
+                },
+                defaultData: <?php echo json_encode($department); ?>,
+                userinfo: [],
+            }
+        },
+        methods: {
+            loadNode(node, aa) {
+                if (node.level === 0) {
+                    return aa(this.defaultData);
+                }
+                $.ajax(`index/getNextDepartment?dept_id=${node.data.id}`).done(function (data) {
+                    return aa(JSON.parse(data));
+                });
+            },
+            handleNodeClick(data) {
+                let new_data = [];
+                $.ajaxSettings.async = false;
+                $.get(`index/getDepartmentUsers?dept_id=${data.id}`, function (result) {
+                    if (result !== null && result !== undefined && result !== '') {
+                        new_data = new Proxy(JSON.parse(result), []);
+                    }
+                });
+                this.userinfo = new_data;
+            },
+            open(id) {
+                this.$prompt('请输入待办标题', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                })
+                    .then(({ value }) => {
+                        let re = '';
+                        $.ajaxSettings.async = false;
+                        $.get(`index/createTodoTask?dept_id=${id}&subject=${value}`, function (result) {
+                            console.log(result);
+                            re = result;
+                        });
+                        this.$message({
+                            type: 'success',
+                            message: re,
+                        })
+                    })
+                    .catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '取消输入',
+                        })
+                    })
+            },
+            send(id) {
+                this.$prompt('请输入通知内容', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                })
+                    .then(({ value }) => {
+                        let re = '';
+                        $.ajaxSettings.async = false;
+                        $.get(`index/sendNotify?userid=${id}&content=${value}`, function (result) {
+                            console.log(result);
+                            re = result;
+                        });
+                        this.$message({
+                            type: 'success',
+                            message: re,
+                        })
+                    })
+                    .catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '取消输入',
+                        })
+                    })
             }
         }
     }
 
-    Vue.createApp(TwoWayBinding).mount('#two-way-binding')
+    function aa(data) {
+    }
+
+    let vm = Vue.createApp(Counter);
+    vm.use(ElementPlus);
+    vm.mount('#counter');
+
+    function getNextDepartment(id) {
+        $.ajax(`index/getNextDepartment?dept_id=${id}`).done(function (data) {
+
+            return JSON.parse(data);
+        });
+    }
 </script>
