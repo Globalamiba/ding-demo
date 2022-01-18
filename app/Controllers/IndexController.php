@@ -9,7 +9,6 @@ class IndexController extends BaseController
 {
     public function indexAction()
     {
-        $this->cache->delete('userinfo');
         if (!$this->cache->has('userinfo')) {
             $params = [
                 'redirect_uri' => urlencode('http://183.136.151.130:8080/Auth'),
@@ -21,6 +20,7 @@ class IndexController extends BaseController
             ];
             $str = http_build_query($params);
             $url = 'https://login.dingtalk.com/oauth2/auth?'.$str;
+            $this->logger->info("has info redirect:".$url);
             $this->response->redirect($url);
         }
         $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
