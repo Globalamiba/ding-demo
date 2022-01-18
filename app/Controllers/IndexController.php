@@ -23,6 +23,9 @@ class IndexController extends BaseController
             $this->logger->info("has info redirect:".$url);
             $this->response->redirect($url);
         }
+        else {
+            $this->logger->info("has userinfo:".$this->cache->get('userinfo'));
+        }
         $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
         $this->assets->addJs('https://code.jquery.com/jquery-3.6.0.min.js', false);
         $this->assets->addCss('https://unpkg.com/element-plus/dist/index.css', false);
