@@ -24,6 +24,10 @@
 <body>
 <div id="counter" class="container">
     <div class="row">
+        <el-avatar :size="50" :src="<?php echo $userinfo->avatar; ?>"></el-avatar>
+        <div><?php echo $userinfo->nick; ?></div>
+    </div>
+    <div class="row">
         <div class="col-lg-2 col-12"><el-tree :props="defaultProps" :load="loadNode" @node-click="handleNodeClick" lazy /></div>
         <div class="col-lg-10 col-12">
             <el-table :data="userinfo" stripe border style="width: 100%">
