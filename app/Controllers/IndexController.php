@@ -11,7 +11,7 @@ class IndexController extends BaseController
     {
         if (!$this->cache->has('userinfo')) {
             $params = [
-                'redirect_uri' => urlencode('http://183.136.151.130:8080/Index/abc'),
+                'redirect_uri' => urlencode('http://183.136.151.130:8080/Auth'),
                 'response_type' => 'code',
                 'client_id' => $this->config->path('ding.AppKey'),
                 'scope' => 'openid',
@@ -42,20 +42,6 @@ class IndexController extends BaseController
         }
         $dept = $dept ?? [];
         $this->view->setVar('department', $dept);
-    }
-
-    public function abcAction()
-    {
-        $code = $this->request->get('authCode');
-        $this->logger->info("url:".$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]);
-        $this->logger->info("dingding code:".$code);
-        $token = dingTalkService::getUserToken($code, $this->config->path('ding.AppKey'), $this->config->path('ding.AppSecret'));
-        $this->logger->info("user token:".json_encode($token));
-        $this->cache->set('user_token', $token->body->accessToken);
-        $userinfo = dingTalkService::getUserInfoWithToken($token->accessToken);
-        $this->logger->info("user token:".json_encode($userinfo));
-        $this->cache->set('userInfo', $userinfo, 10);
-        $this->response->redirect('http://183.136.151.130:8080');
     }
 
     public function testAction()
