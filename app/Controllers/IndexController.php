@@ -24,7 +24,7 @@ class IndexController extends BaseController
             $this->response->redirect($url);
         }
         else {
-            $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo')));
+            $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo'), true));
             $this->logger->info("login user:".$this->cache->get('userinfo'));
         }
         $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
