@@ -25,7 +25,8 @@ class IndexController extends BaseController
         }
         else {
             $this->logger->info("has userinfo:".$this->cache->get('userinfo'));
-            $this->view->setVar('userinfo', $this->cache->get('userinfo'));
+            $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo')));
+            $this->logger->info("login user:".$this->cache->get('userinfo'));
         }
         $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
         $this->assets->addJs('https://code.jquery.com/jquery-3.6.0.min.js', false);
