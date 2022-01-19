@@ -19,7 +19,7 @@ use OapiV2UserListRequest;
 
 //发送通知 旧SDK
 use OapiMessageCorpconversationAsyncsendV2Request;
-use OA as oa_alias;
+use \OA as oa_alias;
 use Msg;
 use Text;
 use Body;
