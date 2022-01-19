@@ -19,7 +19,7 @@ use OapiV2UserListRequest;
 
 //发送通知 旧SDK
 use OapiMessageCorpconversationAsyncsendV2Request;
-use OA;
+use OA as oa_alias;
 use Msg;
 use Text;
 use Body;
@@ -126,7 +126,7 @@ class dingTalkService
         $text = new Text;
         $text->content=$message['content'];
         $msg->text = $text;
-        $oa = new OA;
+        $oa = new oa_alias;
         $body = new Body;
         $body->content=$message['content'];
         $oa->body = $body;
