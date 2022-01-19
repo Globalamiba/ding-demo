@@ -12,17 +12,16 @@ use AlibabaCloud\Tea\Utils\Utils\RuntimeOptions;
 use AlibabaCloud\Tea\Exception\TeaError;
 
 //获取部门和用户信息  旧SDK
-use OA;
 use DingTalkClient;
 use DingTalkConstant;
 use OapiV2DepartmentListsubRequest;
 use OapiV2UserListRequest;
 
 //发送通知 旧SDK
+use OA;
 use OapiMessageCorpconversationAsyncsendV2Request;
 use Msg;
 use Text;
-
 use Body;
 
 //创建代办
