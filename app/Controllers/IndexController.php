@@ -48,21 +48,6 @@ class IndexController extends BaseController
         $this->view->setVar('department', $dept);
     }
 
-    public function testAction()
-    {
-        $params = [
-            'redirect_url' => urlencode('http://183.136.151.130:8080/Auth'),
-            'response_type' => 'code',
-            'client_id' => $this->config->path('ding.AppKey'),
-            'scope' => 'openid',
-            'state' => 'test',
-            'prompt' => 'consent'
-        ];
-        $a = http_build_query($params);
-        $url = 'https://login.dingtalk.com/oauth2/auth?';
-        var_dump($url.$a);
-    }
-
     public function getNextDepartmentAction()
     {
         $dept_id = $this->request->get('dept_id') ?? 1;
@@ -110,7 +95,12 @@ class IndexController extends BaseController
         if ($union_id !== 'INbJzOoOlliiaOHNsViikwPAiEiE') $union_id = 'INbJzOoOlliiaOHNsViikwPAiEiE';
         $result = dingTalkService::createTodoTask($this->getToken(), $union_id, $subject);
         $this->logger->info("createTodoTask:".json_encode($result));
-        echo json_encode($result);
+        if ($result->body) {
+            echo "success";
+        }
+        else {
+            echo 'fail';
+        }
     }
 
     public function sendNotifyAction()
