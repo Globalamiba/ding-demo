@@ -18,8 +18,8 @@ use OapiV2DepartmentListsubRequest;
 use OapiV2UserListRequest;
 
 //发送通知 旧SDK
-use OA;
 use OapiMessageCorpconversationAsyncsendV2Request;
+use OA;
 use Msg;
 use Text;
 use Body;

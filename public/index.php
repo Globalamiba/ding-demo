@@ -9,7 +9,8 @@ define('TOP_SDK_WORK_DIR', realpath('..') . '/storage/dingTmp');
 
 try {
     require_once APP_PATH . "/vendor/autoload.php";
-    include_once APP_PATH . '/libs/TopSdk.php';
+    require_once APP_PATH . '/libs/TopSdk.php';
+
 
     $boot = new Bootstrap(APP_PATH);
     $boot->run();
