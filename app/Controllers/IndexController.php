@@ -9,23 +9,26 @@ class IndexController extends BaseController
 {
     public function indexAction()
     {
-        if (!$this->cache->has('userinfo')) {
-            $params = [
-                'redirect_uri' => 'http://183.136.151.130:8080/Auth',
-                'response_type' => 'code',
-                'client_id' => $this->config->path('ding.AppKey'),
-                'scope' => 'openid',
-                'state' => 'test',
-                'prompt' => 'consent'
-            ];
-            $str = http_build_query($params);
-            $url = 'https://login.dingtalk.com/oauth2/auth?'.$str;
-            $this->logger->info("no info redirect:".$url);
-            $this->response->redirect($url);
-        }
-        else {
-            $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo')));
-            $this->logger->info("login user:".$this->cache->get('userinfo'));
+        $no_login = $this->request->get('no_login', '', true);
+        if ($no_login) {
+            if (!$this->cache->has('userinfo')) {
+                $params = [
+                    'redirect_uri' => 'http://183.136.151.130:8080/Auth',
+                    'response_type' => 'code',
+                    'client_id' => $this->config->path('ding.AppKey'),
+                    'scope' => 'openid',
+                    'state' => 'test',
+                    'prompt' => 'consent'
+                ];
+                $str = http_build_query($params);
+                $url = 'https://login.dingtalk.com/oauth2/auth?'.$str;
+                $this->logger->info("no info redirect:".$url);
+                $this->response->redirect($url);
+            }
+            else {
+                $this->view->setVar('userinfo', json_decode($this->cache->get('userinfo')));
+                $this->logger->info("login user:".$this->cache->get('userinfo'));
+            }
         }
         $this->assets->addJs('https://g.alicdn.com/dingding/dingtalk-jsapi/2.13.42/dingtalk.open.js', false);
         $this->assets->addJs('https://code.jquery.com/jquery-3.6.0.min.js', false);

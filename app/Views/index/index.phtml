@@ -23,6 +23,7 @@
 </head>
 <body>
 <div id="counter" class="container">
+    <?php if(isset($userinfo)){ ?>
     <div class="row align-items-center">
         <div class="col-2">
             <el-avatar :size="50" :src="'<?php echo $userinfo->avatarUrl; ?>'"></el-avatar>
@@ -31,6 +32,7 @@
             <?php echo $userinfo->nick; ?>
         </div>
     </div>
+    <?php } ?>
     <div class="row">
         <div class="col-lg-2 col-12"><el-tree :props="defaultProps" :load="loadNode" @node-click="handleNodeClick" lazy /></div>
         <div class="col-lg-10 col-12">
