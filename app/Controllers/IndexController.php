@@ -45,19 +45,19 @@ class IndexController extends BaseController
             $dept[] = ['id' => $v->dept_id, 'name' => $v->name];
         }
         $dept = $dept ?? [];
-        $this->view->setVar('department', $dept);
+        //$this->view->setVar('department', $dept);
     }
 
     public function getNextDepartmentAction()
     {
-        $dept_id = $this->request->get('dept_id') ?? 1;
+        /*$dept_id = $this->request->get('dept_id') ?? 1;
         $access_token = $this->getToken();
         $department = (new dingTalkService)->testOldSDK($access_token, (int)$dept_id);
         foreach($department->result as $v) {
             $dept[] = ['id' => $v->dept_id, 'name' => $v->name];
         }
         $dept = $dept ?? [];
-        echo json_encode($dept);
+        echo json_encode($dept);*/
     }
 
     private function getToken() : string
@@ -90,7 +90,7 @@ class IndexController extends BaseController
 
     public function createTodoTaskAction()
     {
-        $union_id = $this->request->get('union_id', '', 'INbJzOoOlliiaOHNsViikwPAiEiE');
+        /*$union_id = $this->request->get('union_id', '', 'INbJzOoOlliiaOHNsViikwPAiEiE');
         $subject = $this->request->get('subject');
         if ($union_id !== 'INbJzOoOlliiaOHNsViikwPAiEiE') $union_id = 'INbJzOoOlliiaOHNsViikwPAiEiE';
         $result = dingTalkService::createTodoTask($this->getToken(), $union_id, $subject);
@@ -100,7 +100,7 @@ class IndexController extends BaseController
         }
         else {
             echo 'fail';
-        }
+        }*/
     }
 
     public function sendNotifyAction()
